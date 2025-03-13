@@ -6,6 +6,7 @@ export default class FeedController {
     this.posts = [];
     this.room = new WebsimSocket();
     this.setupDatabase();
+    this.userVotes = {}; // Track user votes on posts
   }
 
   setupDatabase() {
@@ -181,38 +182,24 @@ export default class FeedController {
       const btn = e.currentTarget;
       const countEl = btn.querySelector('span');
       const post = this.posts.find(p => p.id === postId);
-      if (post) {
-        // Toggle upvote state
-        const wasUpvoted = btn.classList.contains('upvoted');
-        const downvoteBtn = postEl.querySelector('.downvote-btn');
-        const wasDownvoted = downvoteBtn.classList.contains('downvoted');
-        
-        // Remove any existing vote states
-        btn.classList.remove('upvoted');
-        downvoteBtn.classList.remove('downvoted');
-        
-        let updatedUpvotes = post.upvotes || 0;
-        let updatedDownvotes = post.downvotes || 0;
-        
-        // If it was downvoted, remove the downvote
-        if (wasDownvoted) {
-          updatedDownvotes = Math.max(0, updatedDownvotes - 1);
-          downvoteBtn.querySelector('span').textContent = updatedDownvotes;
+      
+      // Check if user has already voted on this post
+      if (post && (!this.userVotes[postId] || this.userVotes[postId] !== 'up')) {
+        // If user downvoted before, remove that vote first
+        if (this.userVotes[postId] === 'down') {
+          const downvoteBtn = postEl.querySelector('.downvote-btn');
+          const downvoteCountEl = downvoteBtn.querySelector('span');
+          const updatedDownvotes = (post.downvotes || 0) - 1;
+          downvoteCountEl.textContent = updatedDownvotes;
+          downvoteBtn.classList.remove('downvoted');
+          await this.updatePost(postId, { downvotes: updatedDownvotes });
         }
         
-        // Toggle upvote
-        if (!wasUpvoted) {
-          updatedUpvotes += 1;
-          btn.classList.add('upvoted');
-        } else {
-          updatedUpvotes = Math.max(0, updatedUpvotes - 1);
-        }
-        
-        countEl.textContent = updatedUpvotes;
-        await this.updatePost(postId, { 
-          upvotes: updatedUpvotes,
-          downvotes: updatedDownvotes
-        });
+        const updatedCount = (post.upvotes || 0) + 1;
+        countEl.textContent = updatedCount;
+        btn.classList.add('upvoted');
+        this.userVotes[postId] = 'up';
+        await this.updatePost(postId, { upvotes: updatedCount });
       }
     });
     
@@ -222,38 +209,24 @@ export default class FeedController {
       const btn = e.currentTarget;
       const countEl = btn.querySelector('span');
       const post = this.posts.find(p => p.id === postId);
-      if (post) {
-        // Toggle downvote state
-        const wasDownvoted = btn.classList.contains('downvoted');
-        const upvoteBtn = postEl.querySelector('.upvote-btn');
-        const wasUpvoted = upvoteBtn.classList.contains('upvoted');
-        
-        // Remove any existing vote states
-        btn.classList.remove('downvoted');
-        upvoteBtn.classList.remove('upvoted');
-        
-        let updatedDownvotes = post.downvotes || 0;
-        let updatedUpvotes = post.upvotes || 0;
-        
-        // If it was upvoted, remove the upvote
-        if (wasUpvoted) {
-          updatedUpvotes = Math.max(0, updatedUpvotes - 1);
-          upvoteBtn.querySelector('span').textContent = updatedUpvotes;
+      
+      // Check if user has already voted on this post
+      if (post && (!this.userVotes[postId] || this.userVotes[postId] !== 'down')) {
+        // If user upvoted before, remove that vote first
+        if (this.userVotes[postId] === 'up') {
+          const upvoteBtn = postEl.querySelector('.upvote-btn');
+          const upvoteCountEl = upvoteBtn.querySelector('span');
+          const updatedUpvotes = (post.upvotes || 0) - 1;
+          upvoteCountEl.textContent = updatedUpvotes;
+          upvoteBtn.classList.remove('upvoted');
+          await this.updatePost(postId, { upvotes: updatedUpvotes });
         }
         
-        // Toggle downvote
-        if (!wasDownvoted) {
-          updatedDownvotes += 1;
-          btn.classList.add('downvoted');
-        } else {
-          updatedDownvotes = Math.max(0, updatedDownvotes - 1);
-        }
-        
-        countEl.textContent = updatedDownvotes;
-        await this.updatePost(postId, { 
-          downvotes: updatedDownvotes,
-          upvotes: updatedUpvotes
-        });
+        const updatedCount = (post.downvotes || 0) + 1;
+        countEl.textContent = updatedCount;
+        btn.classList.add('downvoted');
+        this.userVotes[postId] = 'down';
+        await this.updatePost(postId, { downvotes: updatedCount });
       }
     });
     
