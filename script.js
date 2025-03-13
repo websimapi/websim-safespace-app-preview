@@ -6,6 +6,9 @@ document.addEventListener('DOMContentLoaded', function() {
     import('./src/components/Feed/FeedController.js').then(feedModule => {
       const FeedController = feedModule.default;
       
+      // Initialize WebSim connection
+      const room = new WebsimSocket();
+      
       // Mock data for the app
       const mockPosts = [
         {
@@ -89,6 +92,24 @@ document.addEventListener('DOMContentLoaded', function() {
           ]
         }
       ];
+
+      // Add view toggle functionality
+      const viewToggleBtn = document.getElementById('view-toggle');
+      const phoneContainer = document.getElementById('phone-container');
+      const appInfo = document.querySelector('.app-info');
+      
+      viewToggleBtn.addEventListener('click', function() {
+        phoneContainer.classList.toggle('fullscreen-mode');
+        appInfo.classList.toggle('hidden');
+        
+        if (phoneContainer.classList.contains('fullscreen-mode')) {
+          viewToggleBtn.textContent = 'Return to Demo View';
+          document.body.style.overflow = 'hidden';
+        } else {
+          viewToggleBtn.textContent = 'View Full Screen';
+          document.body.style.overflow = '';
+        }
+      });
 
       // Initialize the app with Auth controller
       const authController = new AuthController(() => {
