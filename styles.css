@@ -56,6 +56,25 @@ body {
   box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+.phone-fullscreen-btn {
+  position: absolute;
+  bottom: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #6366f1;
+  box-shadow: 0 4px 10px rgba(99, 102, 241, 0.3);
+  border: none;
+  cursor: pointer;
+  color: white;
+}
+
 .app-info {
   flex: 1;
   padding: 40px;
@@ -388,6 +407,95 @@ body {
   color: #374151;
 }
 
+.fullscreen-mode {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  background-color: white;
+  overflow: auto;
+  padding: 0;
+  margin: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.fullscreen-mode .phone-content {
+  width: 100%;
+  height: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  border-radius: 0;
+}
+
+.fullscreen-mode .phone-fullscreen-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  left: auto;
+  transform: none;
+  z-index: 1001;
+  background-color: #6366f1;
+}
+
+.fullscreen-mode .feed-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.fullscreen-mode .feed-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.fullscreen-mode .post-card {
+  max-width: 700px;
+  margin: 0 auto 20px auto;
+}
+
+.author-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #f3f4f6;
+  object-fit: cover;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 40px;
+  color: #6b7280;
+  background-color: white;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.upvoted svg {
+  color: #6366f1;
+  stroke: #6366f1;
+}
+
+.downvoted svg {
+  color: #ef4444;
+  stroke: #ef4444;
+}
+
+.comment-input:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+}
+
+@media (max-width: 600px) {
+  .fullscreen-mode .post-card {
+    margin: 0 10px 20px 10px;
+  }
+}
+
 /* Post Detail styles */
 .post-detail-container {
   height: 100%;
@@ -615,29 +723,6 @@ body {
   background-color: #4f46e5;
   transform: translateY(-2px);
   box-shadow: 0 6px 16px rgba(79, 70, 229, 0.3);
-}
-
-.fullscreen-mode {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1000;
-  background-color: white;
-  overflow: auto;
-  padding: 0;
-  margin: 0;
-  border-radius: 0;
-  box-shadow: none;
-}
-
-.fullscreen-mode .phone-content {
-  width: 100%;
-  height: 100%;
-  border-radius: 0;
-  max-width: 600px;
-  margin: 0 auto;
 }
 
 .hidden {
