@@ -1,5 +1,3 @@
-The updated code for script.js is:
-```javascript
 document.addEventListener('DOMContentLoaded', function() {
   // Initialize the app
   renderLoginView();
@@ -184,111 +182,36 @@ document.addEventListener('DOMContentLoaded', function() {
           </div>
           <div class="section">
             <h3 class="section-title">Interaction Timeline</h3>
-            ${renderPosts(posts).map((interaction, index) => `
+            ${post.interactions.map((interaction, index) => `
               <div class="timeline-item">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0-2-2v-7a2 2 0 0 0-2-2h3"></path></svg>
-            `).join('}`);
-            const diffInSeconds = Math.floor((now - interaction.timestamp) / 1000);
-            const diffInMinutes = Math.floor(diffInSeconds / 60);
-            if (diffInMinutes < 60) {
-              return `${diffInMinutes}s ago`;
-            }
-            const diffInHours = Math.floor(diffInMinutes / 60);
-            if (diffInHours < 24) {
-              return `${diffInHours}h ago`;
-            }
-            const diffInDays = Math.floor(diffInHours / 24);
-            if (diffInDays < 7) {
-              return `${diffInDays}d ago`;
-            }
-            const now = new Date();
-            const diffInSeconds = Math.floor((now - interaction.timestamp) / 1000);
-            if (diffInSeconds < 60) {
-              return `${diffInSeconds}s ago`;
-            }
-            const diffInMinutes = Math.floor(diffInSeconds / 60);
-            if (diffInMinutes < 60) {
-              return `${diffInMinutes}m ago`;
-            }
-            const diffInHours = Math.floor(diffInMinutes / 60);
-            if (diffInHours < 24) {
-              return `${diffInHours}h ago`;
-            }
-            const diffInDays = Math.floor(diffInHours / 24);
-            if (diffInDays < 7) {
-              return `${diffInDays}d ago`;
-            }
-            const now = new Date();
-            const diffInSeconds = Math.floor((now - interaction.timestamp) / 1000);
-            if (diffInSeconds < 60) {
-              return `${diffInSeconds}s ago`;
-            }
-            const diffInMinutes = Math.floor(diffInSeconds / 60);
-            if (diffInMinutes < 60) {
-              return `${diffInMinutes}m ago`;
-            }
-            const diffInHours = Math.floor(diffInMinutes / 60);
-            if (diffInHours < 24) {
-              return `${diffInHours}h ago`;
-            }
-            const diffInDays = Math.floor(diffInHours / 24);
-            if (diffInDays < 7) {
-              return `${diffInDays}d ago`;
-            }
-            const now = new Date();
-            const diffInSeconds = Math.floor((now - interaction.timestamp) / 1000);
-            if (diffInSeconds < 60) {
-              return `${diffInSeconds}s ago`;
-            }
-            const diffInMinutes = Math.floor(diffInSeconds / 60);
-            if (diffInMinutes < 60) {
-              return `${diffInMinutes}m ago`;
-            }
-            const diffInHours = Math.floor(diffInMinutes / 60);
-            if (diffInHours < 24) {
-              return `${diffInHours}h ago`;
-            }
-            const diffInDays = Math.floor(diffInHours / 24);
-            if (diffInDays < 7) {
-              return `${diffInDays}d ago`;
-            }
-            return `${date.toLocaleDateString()}`;
-          }
-        `).join('')
+                <span class="timeline-text">${getTimeDiff(interaction.timestamp)}</span>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      </div>
+    `;
 
-        // ... existing code ...
-
-        const now = new Date();
-
-        const diffInSeconds = Math.floor((now - interaction.timestamp) / 1000);
-
-        if (diffInSeconds < 60) {
-          return `${diffInSeconds}s ago`;
-        }
-        const diffInMinutes = Math.floor(diffInSeconds / 60);
-
-        if (diffInMinutes < 60) {
-          return `${diffInMinutes}m ago`;
-        }
-        const diffInHours = Math.floor(diffInMinutes / 60);
-
-        if (diffInHours < 24) {
-          return `${diffInHours}h ago`;
-        }
-        const diffInDays = Math.floor(diffInHours / 24);
-
-        if (diffInDays < 7) {
-          return `${diffInDays}d ago`;
-        }
-        return `${date.toLocaleDateString()}`;
+    function getTimeDiff(timestamp) {
+      const now = new Date();
+      const diffInSeconds = Math.floor((now - timestamp) / 1000);
+      if (diffInSeconds < 60) {
+        return `${diffInSeconds}s ago`;
       }
-    `).forEach(post => {
-      post.addEventListener('click', (e) => {
-        const postId = post.getAttribute('data-post-id');
-        const selectedPost = posts.find(p => p.id === postId);
-        if (selectedPost) {
-          renderPostDetail(selectedPost);
-        }
-      });
-    });
+      const diffInMinutes = Math.floor(diffInSeconds / 60);
+      if (diffInMinutes < 60) {
+        return `${diffInMinutes}m ago`;
+      }
+      const diffInHours = Math.floor(diffInMinutes / 60);
+      if (diffInHours < 24) {
+        return `${diffInHours}h ago`;
+      }
+      const diffInDays = Math.floor(diffInHours / 24);
+      if (diffInDays < 7) {
+        return `${diffInDays}d ago`;
+      }
+      return `${new Date(timestamp).toLocaleDateString()}`;
+    }
   }
+}
