@@ -63,8 +63,8 @@ body {
   transform: translateX(-50%);
   padding: 10px;
   border-radius: 50%;
-  width: 45px;
-  height: 45px;
+  width: 48px;
+  height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -73,6 +73,13 @@ body {
   border: none;
   cursor: pointer;
   color: white;
+  transition: all 0.2s ease;
+}
+
+.phone-fullscreen-btn:hover {
+  background-color: #4f46e5;
+  transform: translateX(-50%) scale(1.05);
+  box-shadow: 0 6px 14px rgba(99, 102, 241, 0.4);
 }
 
 .app-info {
