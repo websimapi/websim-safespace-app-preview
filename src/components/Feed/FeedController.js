@@ -90,7 +90,14 @@ export default class FeedController {
       return '<div class="empty-state">No posts yet. Be the first to post!</div>';
     }
     
-    return this.posts.map(post => `
+    // Calculate trending score based on time and votes
+    const getTrendingScore = (post) => {
+      const hoursOld = (new Date().getTime() - new Date(post.timestamp).getTime()) / (1000 * 60 * 60);
+      const score = post.upvotes - post.downvotes;
+      return score / Math.pow(hoursOld + 2, 1.8); // Similar to Reddit's algorithm
+    };
+
+    return this.posts.sort((a, b) => getTrendingScore(b) - getTrendingScore(a)).map(post => `
       <div class="post-card" data-post-id="${post.id}">
         <div class="post-header">
           <div class="author-container">
