@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function() {
           </div>
           <div class="input-group">
             <label class="input-label">Password</label>
-            <input type="password" class="input-field" placeholder="••••••••">
+            <input type="password" class="input-field" placeholder="•••••••">
           </div>
           <button class="auth-button" id="login-button">Sign In</button>
         </div>
@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function() {
           </div>
           <div class="input-group">
             <label class="input-label">Password</label>
-            <input type="password" class="input-field" placeholder="•••••••">
+            <input type="password" class="input-field" placeholder="••••••">
           </div>
           <button class="register-button" id="register-button">Create Account</button>
         </div>
@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="feed-header">
           <h2 class="feed-title">Community Feed</h2>
           <div class="feed-actions">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11-8 11-8 11-8 8-11 8-11z"></path></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path></svg>
           </div>
         </div>
         <div class="post-list" id="post-list">
@@ -164,11 +164,11 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="post-actions">
           <div class="action-group">
             <div class="action-button">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-2.3L19 12a2 2 0 0 0-2-2h-2.8"></path></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H7.82"></path></svg>
               <span>${post.upvotes}</span>
             </div>
             <div class="action-button">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2-2.3l1.28 9a2 2 0 0 0 2 2h3"></path></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 15v4a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0-2-2v-7a2 2 0 0 0-2-2h3"></path></svg>
               <span>${post.downvotes}</span>
             </div>
           </div>
@@ -213,28 +213,28 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="section">
           <h3 class="section-title">Analytics</h3>
           <div class="stat">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 0-2-2v-7a2 2 0 0 0-2-2h3"></path></svg>
-          </div>
-          <div class="stat">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
             <span class="stat-label">Views</span>
             <span class="stat-value">${post.views}</span>
           </div>
           <div class="stat">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 15v4a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0-2-2v-7a2 2 0 0 0-2-2h3"></path></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H7.82"></path></svg>
+            <span class="stat-label">Upvotes</span>
+            <span class="stat-value">${post.upvotes}</span>
           </div>
-          <div class="post-comments" style="margin-top: 20px;">
+          <div class="stat">
             <span class="stat-label">Comments</span>
             <span class="stat-value">${post.comments.length}</span>
           </div>
-          <div class="section">
-            <h3 class="section-title">Interaction Timeline</h3>
-            ${post.interactions.map((interaction, index) => `
-              <div class="timeline-item">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0-2-2.3L19 12a2 2 0 0 0-2-2h-2.8"></path></svg>
-                <span class="timeline-text">${formatDate(interaction.timestamp)}</span>
-              </div>
-            `).join('')}
-          </div>
+        </div>
+        <div class="section">
+          <h3 class="section-title">Interaction Timeline</h3>
+          ${post.interactions.map((interaction, index) => `
+            <div class="timeline-item">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H7.82"></path></svg>
+              <span class="timeline-text">${interaction.type} - ${formatDate(new Date(interaction.timestamp))}</span>
+            </div>
+          `).join('')}
         </div>
       </div>
     `;
