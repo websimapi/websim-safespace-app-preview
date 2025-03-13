@@ -1,7 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-  // Initialize the app
-  renderLoginView();
-  
   // Mock data for the app
   const mockPosts = [
     {
@@ -59,6 +56,9 @@ document.addEventListener('DOMContentLoaded', function() {
       ]
     }
   ];
+
+  // Initialize the app with sample data
+  renderLoginView();
 
   // Auth functions
   function renderLoginView() {
